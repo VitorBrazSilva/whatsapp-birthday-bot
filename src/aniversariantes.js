@@ -40,9 +40,9 @@ const grupos = [
     ]
   },
   {
-    nomeGrupo: "Adelaide 🐶🐾💖",
+    nomeGrupo: "Broxas ®",
     membros: [
-      { nome: "Adelaide", data: "2025-06-11", descricao: "nossa cachorrinha, 3 meses de vida, 1 mes com a gente, está com cinomose e estamos fazendo de tudo para salva-la" }
+      { nome: "Teteu", data: "2025-06-11", descricao: "Essa é uma mensagem automatica de um script interligado com IA, estou simulando um aniversario para o Teteu, teteu vc gosta de mamar me olhando" }
     ]
   }
 ];
