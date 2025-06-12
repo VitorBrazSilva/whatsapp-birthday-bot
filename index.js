@@ -16,7 +16,12 @@ import cron from 'node-cron';
 import { aniversariantesPorGrupoHoje } from './src/aniversariantes.js';
 import { gerarMensagem } from './src/openai.js';
 
-const client = new Client({ authStrategy: new LocalAuth() });
+const client = new Client({
+  authStrategy: new LocalAuth(),
+  puppeteer: {
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  }
+});
 
 client.on('qr', (qr) => {
   qrcode.generate(qr, { small: true });
@@ -24,37 +29,41 @@ client.on('qr', (qr) => {
 
 client.on('ready', async () => {
   console.log('🤖 Bot pronto e conectado ao WhatsApp!');
-
-  executarAgora();
+  try {
+    await executarAgora();
+  } catch (err) {
+    console.error('Erro ao executar o bot imediatamente:', err);
+  }
 
   cron.schedule('0 9 * * *', async () => {
-    console.log('⏰ Verificando aniversários por grupo...');
-
-    const gruposHoje = aniversariantesPorGrupoHoje();
-    if (gruposHoje.length === 0) {
-      console.log('Nenhum grupo tem aniversariantes hoje.');
-      return;
-    }
-
-    const chats = await client.getChats();
-
-    for (const grupo of gruposHoje) {
-      const chat = chats.find(c => c.name === grupo.nomeGrupo);
-
-      if (!chat) {
-        console.warn(`Grupo não encontrado: ${grupo.nomeGrupo}`);
-        continue;
+    try {
+      console.log('⏰ Verificando aniversários por grupo...');
+      const gruposHoje = aniversariantesPorGrupoHoje();
+      if (gruposHoje.length === 0) {
+        console.log('Nenhum grupo tem aniversariantes hoje.');
+        return;
       }
 
-      for (const pessoa of grupo.aniversariantes) {
-        const mensagem = await gerarMensagem(pessoa.nome, pessoa.descricao);
-        await chat.sendMessage(mensagem);
-        console.log(`✅ Mensagem enviada para ${pessoa.nome} em ${grupo.nomeGrupo}`);
+      const chats = await client.getChats();
+
+      for (const grupo of gruposHoje) {
+        const chat = chats.find(c => c.name === grupo.nomeGrupo);
+        if (!chat) {
+          console.warn(`Grupo não encontrado: ${grupo.nomeGrupo}`);
+          continue;
+        }
+
+        for (const pessoa of grupo.aniversariantes) {
+          const mensagem = await gerarMensagem(pessoa.nome, pessoa.descricao);
+          await chat.sendMessage(mensagem);
+          console.log(`✅ Mensagem enviada para ${pessoa.nome} em ${grupo.nomeGrupo}`);
+        }
       }
+    } catch (err) {
+      console.error('Erro na execução agendada:', err);
     }
   });
 });
-
 client.initialize();
 
 
