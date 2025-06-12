@@ -25,21 +25,17 @@ client.on('qr', (qr) => {
 client.on('ready', async () => {
   console.log('🤖 Bot pronto e conectado ao WhatsApp!');
 
-  try {
-    await client.getChats();
-    console.log('💬 Chats carregados com sucesso.');
-  } catch (e) {
-    console.error('❌ Erro ao carregar chats na inicialização:', e);
-  }
+  // Aguarda 5 segundos para garantir que os chats estejam carregados
+  await new Promise(resolve => setTimeout(resolve, 5000));
 
-  executarAgora();
+  await executarAgora();
 
   cron.schedule('0 11 * * *', async () => {
     console.log('⏰ Verificando aniversários por grupo...');
     try {
       await executarAgora();
-    } catch (e) {
-      console.error('Erro na execução agendada:', e);
+    } catch (err) {
+      console.error('❌ Erro na execução agendada:', err);
     }
   });
 });
@@ -55,26 +51,30 @@ async function executarAgora() {
     return;
   }
 
-  let chats = [];
+  let chats;
   try {
     chats = await client.getChats();
-    chats = chats.filter(c => c && typeof c.name === 'string');
-  } catch (e) {
-    console.error('❌ Erro ao buscar chats:', e);
+  } catch (err) {
+    console.error('❌ Erro ao buscar chats:', err);
     return;
   }
 
   for (const grupo of gruposHoje) {
-    const chat = chats.find(c => c.name === grupo.nomeGrupo);
+    const chat = chats.find(c => c?.name === grupo.nomeGrupo);
+
     if (!chat) {
       console.warn(`⚠️ Grupo não encontrado: ${grupo.nomeGrupo}`);
       continue;
     }
 
     for (const pessoa of grupo.aniversariantes) {
-      const mensagem = await gerarMensagem(pessoa.nome, pessoa.descricao);
-      await chat.sendMessage(mensagem);
-      console.log(`🎉 Mensagem enviada para ${pessoa.nome} em ${grupo.nomeGrupo}`);
+      try {
+        const mensagem = await gerarMensagem(pessoa.nome, pessoa.descricao);
+        await chat.sendMessage(mensagem);
+        console.log(`🎉 Mensagem enviada para ${pessoa.nome} em ${grupo.nomeGrupo}`);
+      } catch (err) {
+        console.error(`❌ Falha ao enviar mensagem para ${pessoa.nome}:`, err);
+      }
     }
   }
 }

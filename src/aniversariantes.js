@@ -40,9 +40,9 @@ const grupos = [
     ]
   },
   {
-    nomeGrupo: "Broxas ®",
+    nomeGrupo: "Primos 3.0",
     membros: [
-      { nome: "Teteu", data: "2025-06-12", descricao: "Essa é uma mensagem automatica de um script interligado com IA, estou simulando um aniversario para o Teteu, teteu vc gosta de mamar me olhando" }
+      { nome: "Paulo Caram", data: "2025-06-12", descricao: "Jogue de Gangplank por favor, só esse você sabe jogar" }
     ]
   }
 ];
