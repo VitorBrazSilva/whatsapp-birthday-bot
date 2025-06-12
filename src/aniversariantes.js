@@ -42,7 +42,7 @@ const grupos = [
   {
     nomeGrupo: "Broxas ®",
     membros: [
-      { nome: "Teteu", data: "2025-06-11", descricao: "Essa é uma mensagem automatica de um script interligado com IA, estou simulando um aniversario para o Teteu, teteu vc gosta de mamar me olhando" }
+      { nome: "Teteu", data: "2025-06-12", descricao: "Essa é uma mensagem automatica de um script interligado com IA, estou simulando um aniversario para o Teteu, teteu vc gosta de mamar me olhando" }
     ]
   }
 ];
