@@ -19,7 +19,7 @@ const grupos = [
       { nome: "Kaia", data: "2017-05-09", descricao: "está em uma mensagem para mandar para o grupo da familia, nascida em 2017-05-09 (inclui um dado historico interessante deste dia) Pequena, novinha, morou no uruguai fala espanhol, faz Taekendo, adora brincar na rua. Bisneta, Filha da Paula" },
       { nome: "Jaque", data: "2025-05-27", descricao: "está em uma mensagem para mandar para o grupo da familia, nascida em 2025-05-27 (inclui um dado historico interessante deste dia) Formada em educação fisica, trabalha na uff. Casada com Daniel e tem duas lindas filhas" },
       { nome: "Hugo", data: "1983-06-14", descricao: "está em uma mensagem para mandar para o grupo da familia, nascida em 1983-06-14(inclui um dado historico interessante deste dia) , Conhecido como Toxa pelo cabelo ruivo, Flamenguista, formado em Ciência da computação, desenvolvedor, adora cerveja artesanal. Neto, Pai do Pedro " },
-      { nome: "Cris", data: "1979-06-22", descricao: "está em uma mensagem para mandar para o grupo da familia, nascida em 1979-06-22 (inclui um dado historico interessante deste dia), Trabalha no meio cultural, organiza eventos junto ao Marido. Casada com Xan, Mãe do Carlinhos e Bernardo " },
+      { nome: "Cris", data: "1979-06-22", descricao: "é uma mensagem de aniversário para eu enviar para o grupo da familia, Trabalha no meio cultural, organiza eventos, dança faz um pouco de tudo no meio cultural ajudando muitos artistas. nascida em 1979-06-22 (inclui um dado historico interessante deste dia) " },
       { nome: "Maria Alice", data: "2023-06-25", descricao: "está em uma mensagem para mandar para o grupo da familia, nascida em 2023-06-25 (inclui um dado historico interessante deste dia),  Bisneta da familia, Filha do Daniel com a jaque, irmã mais velha" },
       { nome: "Rosélia", data: "1963-07-04", descricao: "está em uma mensagem para mandar para o grupo da familia, nascida em 1963-07-04 (inclui um dado historico interessante deste dia),  Contadora de muitos anos, entende tudo da área, adora viajar, muito carismática um icone da igreja catolica. Casada com Celso e Mãe do Matheus e da Gabrielle" },
       { nome: "Bernardo", data: "2010-07-09", descricao: "está em uma mensagem para mandar para o grupo da familia, nascida em 2010-07-09 (inclui um dado historico interessante deste dia),  Novo, desenha muito bem, faz ótima caricaturas, tem creatividade incrível, conhecido como Bê. Bisneto, filho do Xan com a Cris" },
@@ -40,9 +40,9 @@ const grupos = [
     ]
   },
   {
-    nomeGrupo: "Primos 3.0",
+    nomeGrupo: "Broxas ®",
     membros: [
-      { nome: "Paulo Caram", data: "2025-06-12", descricao: "Jogue de Gangplank por favor, só esse você sabe jogar" }
+      { nome: "Marcos", data: "2025-06-13", descricao: "Diga para o Marcos que todos gostamos dele mesmo com sua deficiência" }
     ]
   }
 ];
