@@ -53,6 +53,7 @@ client.on('ready', async () => {
     const mensagensFormatadas = mensagens.map(m => `${m.autor}: ${m.conteudo}`);
     const resumo = await gerarResumoDoDia(mensagensFormatadas);
         await chat.sendMessage(`📝 Resumo do dia:\n\n${resumo}`);
+    console.log(`📝 Resumo do dia:\n\n${resumo}`);
   }
 });
 
